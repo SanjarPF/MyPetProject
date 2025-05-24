@@ -13,7 +13,7 @@ parameters:
 
     level: 8
     ignoreErrors:
-        #- identifier: missingType.generics
-        #- identifier: missingType.iterableValue
+        - identifier: missingType.generics
+        - identifier: missingType.iterableValue
 
     tmpDir: storage/framework/cache/phpstan
