@@ -6,12 +6,12 @@ namespace App\Containers\Authentication\Models;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @class App\Container\Authentication\Models\User
@@ -30,8 +30,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
-    protected string $guard_name = 'api';
-
     protected $fillable = [
         'name',
         'email',
@@ -42,6 +40,11 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function getGuardName(): string
+    {
+        return 'api';
+    }
 
     protected function casts(): array
     {
