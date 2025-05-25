@@ -12,6 +12,7 @@ return Application::configure(basePath: dirname(__DIR__))
         web: __DIR__.'/../routes/web.php',
         api: [
             __DIR__.'/../app/Containers/Authentication/UI/API/Routes/api_auth.php',
+            __DIR__.'/../app/Containers/PublicContent/UI/API/Routes/api_public.php',
         ],
         commands: __DIR__.'/../routes/console.php',
         health: '/up',

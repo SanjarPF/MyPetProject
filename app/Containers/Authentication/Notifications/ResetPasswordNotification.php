@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Notifications;
+namespace App\Containers\Authentication\Notifications;
 
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Auth\CanResetPassword;
