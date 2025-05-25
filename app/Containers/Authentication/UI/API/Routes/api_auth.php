@@ -12,6 +12,7 @@ use App\Containers\Authentication\UI\API\Controllers\ResetPasswordController;
 use App\Containers\Authentication\UI\API\Controllers\ForgotPasswordController;
 use App\Containers\Authentication\UI\API\Controllers\AssignRoleToUserController;
 use App\Containers\Authentication\UI\API\Controllers\GetAuthenticatedUserController;
+use App\Containers\Authentication\UI\API\Controllers\AssignPermissionsToUserController;
 
 Route::prefix('auth')->group(function () {
     Route::post('register', RegisterController::class);
@@ -55,5 +56,7 @@ Route::post('/users/{id}/assign-role', function (Request $request, User $user) {
     ]);
 });
 
-Route::post('/users/{id}/assign-role', AssignRoleToUserController::class)->middleware('auth:sanctum');
-
+Route::prefix('users')->middleware('auth:sanctum')->group(function () {
+    Route::post('{id}/assign-role', AssignRoleToUserController::class);
+    Route::post('{id}/assign-permission', AssignPermissionsToUserController::class);
+});
