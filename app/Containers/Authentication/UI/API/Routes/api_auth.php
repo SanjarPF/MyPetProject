@@ -23,7 +23,6 @@ Route::prefix('auth')->group(function () {
     Route::post('reset-password', ResetPasswordController::class);
 
     Route::get('me', GetAuthenticatedUserController::class)->middleware('auth:sanctum');
-
 });
 
 Route::middleware(['auth:sanctum', 'role:admin'])->get('/admin-only', function () {
@@ -34,29 +33,7 @@ Route::middleware(['auth:sanctum', 'permission:view-users'])->get('/view-users',
     return response()->json(['message' => 'You can view users.']);
 });
 
-Route::post('/users/{id}/assign-role', function (Request $request, User $user) {
-    $roleName = $request->input('role');
-
-    // Найдём или создадим роль с guard_name 'api'
-    $role = Role::firstOrCreate([
-        'name' => $roleName,
-        'guard_name' => 'api',
-    ]);
-
-    $permissions = ['view-users', 'edit-users'];
-    $role->syncPermissions($permissions);
-
-    // Назначим роль пользователю
-    $user->assignRole($role);
-
-    return response()->json([
-        'message' => "Роль '{$roleName}' назначена пользователю {$user->email}",
-        'roles' => $user->getRoleNames(),
-        'permissions' => $user->getPermissionNames(),
-    ]);
-});
-
-Route::prefix('users')->middleware('auth:sanctum')->group(function () {
+Route::prefix('users')->middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::post('{id}/assign-role', AssignRoleToUserController::class);
     Route::post('{id}/assign-permission', AssignPermissionsToUserController::class);
 });

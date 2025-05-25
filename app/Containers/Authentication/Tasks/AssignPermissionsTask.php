@@ -11,7 +11,7 @@ class AssignPermissionsTask
     public function run(User $user, array $permissions): void
     {
         foreach ($permissions as $permName) {
-            $permission = Permission::firstOrCreate([
+            $permission = Permission::query()->firstOrCreate([
                 'name' => $permName,
                 'guard_name' => 'api',
             ]);

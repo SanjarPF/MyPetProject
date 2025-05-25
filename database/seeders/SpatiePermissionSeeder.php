@@ -17,11 +17,6 @@ class SpatiePermissionSeeder extends Seeder
             'guard_name' => 'api',
         ]);
 
-        $userRole = Role::query()->firstOrCreate([
-            'name' => 'user',
-            'guard_name' => 'api',
-        ]);
-
         $permissions = ['view-users', 'edit-users', 'delete-users'];
 
         foreach ($permissions as $perm) {
