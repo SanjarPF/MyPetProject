@@ -1,9 +1,8 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Providers;
+namespace App\Ship\Providers;
 
-use Laravel\Horizon\Horizon;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Horizon\HorizonApplicationServiceProvider;
 
