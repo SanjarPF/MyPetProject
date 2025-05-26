@@ -1,10 +1,7 @@
 <?php
 declare(strict_types=1);
 
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
-use App\Containers\Authentication\Models\User;
 use App\Containers\Authentication\UI\API\Controllers\LoginController;
 use App\Containers\Authentication\UI\API\Controllers\LogoutController;
 use App\Containers\Authentication\UI\API\Controllers\RegisterController;
