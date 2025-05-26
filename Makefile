@@ -42,6 +42,8 @@ reset:
 	$(S) artisan migrate:fresh --seed
 horizon:
 	$(S) artisan horizon
+rabbitmq:
+	$(S) artisan queue:work rabbitmq
 dispatch-welcome:
 	$(S) artisan tinker --execute="dispatch(new \App\Ship\Jobs\SendWelcomeEmailJob(\App\Containers\Authentication\Models\User::first()));"
 token:

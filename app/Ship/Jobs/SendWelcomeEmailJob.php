@@ -5,7 +5,8 @@ namespace App\Ship\Jobs;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Support\Facades\Log;
+use App\Ship\Mail\WelcomeEmail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -19,6 +20,6 @@ class SendWelcomeEmailJob implements ShouldQueue
 
     public function handle(): void
     {
-        Log::info("📨 Welcome email sent to {$this->user->email}");
+        Mail::to($this->user->email)->send(new WelcomeEmail($this->user));
     }
 }
