@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace App\Containers\Authentication\Tasks;
 
+use App\Models\User;
 use Spatie\Permission\Models\Role;
-use App\Containers\Authentication\Models\User;
 
 class AssignRoleTask
 {

@@ -38,6 +38,16 @@ project-analyze:
 project-test:
 	$(S) exec laravel.test php ./vendor/bin/phpunit
 
+reset:
+	$(S) artisan migrate:fresh --seed
+horizon:
+	$(S) artisan horizon
+dispatch-welcome:
+	$(S) artisan tinker --execute="dispatch(new \App\Ship\Jobs\SendWelcomeEmailJob(\App\Containers\Authentication\Models\User::first()));"
+token:
+	$(S) artisan tinker --execute="echo \App\Containers\Authentication\Models\User::first()->createToken('demo')->plainTextToken;"
+
+
 check: project-cs-check project-analyze
 fix: project-cs-fix project-analyze
 

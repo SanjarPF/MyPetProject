@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-use App\Containers\Authentication\Models\User;
+use App\Models\User;
 
 return [
 

@@ -6,36 +6,37 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use App\Containers\Authentication\Models\User;
 
 class SpatiePermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        $adminRole = Role::query()->firstOrCreate([
+        $permissions = [
+            'view-users',
+            'edit-users',
+            'delete-users',
+            'assign-roles',
+        ];
+
+        foreach ($permissions as $permission) {
+            Permission::query()->firstOrCreate(['name' => $permission, 'guard_name' => 'api']);
+        }
+
+        $admin = Role::query()->firstOrCreate([
             'name' => 'admin',
+            'guard_name' => 'api', // 👈
+        ]);
+
+        $moderator = Role::query()->firstOrCreate([
+            'name' => 'moderator',
             'guard_name' => 'api',
         ]);
 
-        $permissions = ['view-users', 'edit-users', 'delete-users'];
-
-        foreach ($permissions as $perm) {
-            Permission::query()->firstOrCreate([
-                'name' => $perm,
-                'guard_name' => 'api',
-            ]);
-        }
-
-        $adminRole->givePermissionTo($permissions);
-
-        $admin = User::query()->first();
-        if ($admin) {
-            $admin->assignRole('admin');
-        }
-
-        $user = User::query()->skip(1)->first();
-        if ($user) {
-            $user->assignRole('user');
-        }
+        $user = Role::query()->firstOrCreate([
+            'name' => 'user',
+            'guard_name' => 'api',
+        ]);
+        $admin->givePermissionTo(Permission::all());
+        $moderator->givePermissionTo(['view-users', 'edit-users']);
     }
 }

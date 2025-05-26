@@ -1,17 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Containers\Authentication\Models;
+namespace App\Models;
 
+use App\Containers\Authentication\Notifications\ResetPasswordNotification;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Containers\Authentication\Notifications\ResetPasswordNotification;
+use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @class App\Container\Authentication\Models\User
@@ -41,10 +41,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function getGuardName(): string
-    {
-        return 'api';
-    }
+    protected string $guard_name = 'api';
+
+//    public function getGuardName(): string
+//    {
+//        return 'api';
+//    }
 
     protected function casts(): array
     {

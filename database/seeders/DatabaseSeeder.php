@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Containers\Authentication\Models\User;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -15,11 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            SpatiePermissionSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace App\Containers\Authentication\Tasks;
 
-use App\Containers\Authentication\Models\User;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class CreateUserTask
 {
@@ -12,7 +13,7 @@ class CreateUserTask
         $user = new User();
         $user->name = $name;
         $user->email = $email;
-        $user->password = $password;
+        $user->password = Hash::make($password);
         $user->save();
 
         return $user;
