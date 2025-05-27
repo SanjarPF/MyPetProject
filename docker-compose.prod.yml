@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      APP_ENV: production
+      APP_DEBUG: false
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+    networks:
+      - sail
+
+  horizon:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+    volumes:
+      - .:/var/www/html
+    command: php artisan horizon
+
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: sail
+      MYSQL_PASSWORD: password
+    volumes:
+      - sail-mysql:/var/lib/mysql
+    networks:
+      - sail
+
+  redis:
+    image: redis:alpine
+    restart: always
+    volumes:
+      - sail-redis:/data
+    networks:
+      - sail
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    networks:
+      - sail
+
+volumes:
+  sail-mysql:
+  sail-redis:
+  rabbitmq-data:
+
+networks:
+  sail:
+    driver: bridge

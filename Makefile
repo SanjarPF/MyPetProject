@@ -45,9 +45,9 @@ horizon:
 rabbitmq:
 	$(S) artisan queue:work rabbitmq
 dispatch-welcome:
-	$(S) artisan tinker --execute="dispatch(new \App\Ship\Jobs\SendWelcomeEmailJob(\App\Containers\Authentication\Models\User::first()));"
+	$(S) artisan tinker --execute="dispatch(new \App\Ship\Jobs\SendWelcomeEmailJob(\App\Models\User::first()));"
 token:
-	$(S) artisan tinker --execute="echo \App\Containers\Authentication\Models\User::first()->createToken('demo')->plainTextToken;"
+	$(S) artisan tinker --execute="echo \App\Models\User::first()->createToken('demo')->plainTextToken;"
 
 
 check: project-cs-check project-analyze
