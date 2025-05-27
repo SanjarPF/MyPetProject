@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Containers\Authentication\Tasks;
 
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Validation\ValidationException;
 
 class VerifyCredentialsTask
@@ -15,7 +15,7 @@ class VerifyCredentialsTask
      */
     public function run(string $email, string $password): Authenticatable
     {
-        if (! Auth::attempt(['email' => $email, 'password' => $password])) {
+        if (!Auth::attempt(['email' => $email, 'password' => $password])) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
@@ -23,7 +23,7 @@ class VerifyCredentialsTask
 
         $user = Auth::user();
 
-        if (! $user) {
+        if (!$user) {
             throw ValidationException::withMessages([
                 'auth' => ['Authentication failed.'],
             ]);

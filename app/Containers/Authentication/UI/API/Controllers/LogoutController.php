@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Containers\Authentication\UI\API\Controllers;
 
-use App\Containers\Authentication\Actions\LogoutUserAction;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Containers\Authentication\Actions\LogoutUserAction;
 
 class LogoutController
 {
@@ -14,7 +14,7 @@ class LogoutController
     {
         $user = $request->user();
 
-        if (! $user) {
+        if (!$user) {
             return response()->json(['message' => 'Unauthenticated.'], 401);
         }
 

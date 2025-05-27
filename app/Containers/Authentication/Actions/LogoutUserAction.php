@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Containers\Authentication\Actions;
 
-use App\Containers\Authentication\Tasks\RevokeUserTokenTask;
 use Illuminate\Contracts\Auth\Authenticatable;
+use App\Containers\Authentication\Tasks\RevokeUserTokenTask;
 
 class LogoutUserAction
 {

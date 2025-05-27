@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Containers\Authentication\Actions;
 
-use App\Containers\Authentication\Tasks\AssignPermissionsTask;
 use App\Containers\Authentication\Tasks\FindUserByIdTask;
+use App\Containers\Authentication\Tasks\AssignPermissionsTask;
 
 class AssignPermissionsToUserAction
 {

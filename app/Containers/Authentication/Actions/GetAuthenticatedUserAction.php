@@ -13,7 +13,7 @@ class GetAuthenticatedUserAction
     {
         $user = $request->user();
 
-        if (! $user) {
+        if (!$user) {
             abort(401, 'Unauthenticated.');
         }
 

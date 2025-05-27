@@ -49,7 +49,7 @@ $rules = [
         'elements' => ['method' => 'one'],
     ],
     'fully_qualified_strict_types' => true,
-    'function_typehint_space' => true,
+    'type_declaration_spaces' => true,
     'increment_style' => ['style' => 'post'],
     'linebreak_after_opening_tag' => true,
     'no_extra_blank_lines' => [
