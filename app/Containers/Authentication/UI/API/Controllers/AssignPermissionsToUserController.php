@@ -1,11 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Containers\Authentication\UI\API\Controllers;
 
-use Illuminate\Http\JsonResponse;
 use App\Containers\Authentication\Actions\AssignPermissionsToUserAction;
 use App\Containers\Authentication\UI\API\Requests\AssignPermissionsToUserRequest;
+use Illuminate\Http\JsonResponse;
 
 class AssignPermissionsToUserController
 {

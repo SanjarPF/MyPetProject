@@ -1,17 +1,18 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Containers\Authentication\Notifications\ResetPasswordNotification;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Containers\Authentication\Notifications\ResetPasswordNotification;
+use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * @class App\Container\Authentication\Models\User
@@ -22,13 +23,14 @@ use App\Containers\Authentication\Notifications\ResetPasswordNotification;
  * @property string $password
  * @property string $remember_token
  * @property Carbon $email_verified_at
+ *
  * @method static Builder|User filterRequest(Request $request)
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, HasRoles, Notifiable;
 
     protected $fillable = [
         'name',
@@ -43,10 +45,10 @@ class User extends Authenticatable
 
     protected string $guard_name = 'api';
 
-//    public function getGuardName(): string
-//    {
-//        return 'api';
-//    }
+    //    public function getGuardName(): string
+    //    {
+    //        return 'api';
+    //    }
 
     protected function casts(): array
     {

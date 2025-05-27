@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Containers\Authentication\Actions;
@@ -12,7 +13,7 @@ class GetAuthenticatedUserAction
     {
         $user = $request->user();
 
-        if (!$user) {
+        if (! $user) {
             abort(401, 'Unauthenticated.');
         }
 

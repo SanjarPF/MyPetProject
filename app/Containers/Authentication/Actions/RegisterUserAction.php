@@ -1,10 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Containers\Authentication\Actions;
 
-use App\Ship\Events\UserRegisteredEvent;
 use App\Containers\Authentication\Tasks\CreateUserTask;
+use App\Ship\Events\UserRegisteredEvent;
 
 class RegisterUserAction
 {

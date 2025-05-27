@@ -1,11 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Containers\Authentication\Notifications;
 
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class ResetPasswordNotification extends Notification
 {
@@ -20,7 +21,7 @@ class ResetPasswordNotification extends Notification
     {
         $email = $notifiable->getEmailForPasswordReset();
 
-        $url = config('app.frontend_url') . '/reset-password?token=' . $this->token . '&email=' . urlencode($email);
+        $url = config('app.frontend_url').'/reset-password?token='.$this->token.'&email='.urlencode($email);
 
         return (new MailMessage)
             ->subject('Reset your password')

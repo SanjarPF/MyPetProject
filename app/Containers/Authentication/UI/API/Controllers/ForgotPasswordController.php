@@ -1,11 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Containers\Authentication\UI\API\Controllers;
 
+use App\Containers\Authentication\UI\API\Requests\ForgotPasswordRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Password;
-use App\Containers\Authentication\UI\API\Requests\ForgotPasswordRequest;
 
 class ForgotPasswordController
 {

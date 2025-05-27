@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Containers\Authentication\Tasks;
@@ -12,4 +13,3 @@ class FindUserByIdTask
         return User::query()->findOrFail($id);
     }
 }
-

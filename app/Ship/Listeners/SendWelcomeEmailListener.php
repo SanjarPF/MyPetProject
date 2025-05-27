@@ -1,10 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Ship\Listeners;
 
-use App\Ship\Jobs\SendWelcomeEmailJob;
 use App\Ship\Events\UserRegisteredEvent;
+use App\Ship\Jobs\SendWelcomeEmailJob;
 
 class SendWelcomeEmailListener
 {

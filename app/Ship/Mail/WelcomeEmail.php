@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Ship\Mail;
@@ -17,7 +18,7 @@ class WelcomeEmail extends Mailable
     public function build(): self
     {
         return $this
-            ->subject('Welcome to ' . config('app.name'))
+            ->subject('Welcome to '.config('app.name'))
             ->markdown('emails.welcome', ['user' => $this->user]);
     }
 }

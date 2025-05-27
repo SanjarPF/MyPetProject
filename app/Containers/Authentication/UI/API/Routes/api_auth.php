@@ -1,15 +1,16 @@
 <?php
+
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Route;
+use App\Containers\Authentication\UI\API\Controllers\AssignPermissionsToUserController;
+use App\Containers\Authentication\UI\API\Controllers\AssignRoleToUserController;
+use App\Containers\Authentication\UI\API\Controllers\ForgotPasswordController;
+use App\Containers\Authentication\UI\API\Controllers\GetAuthenticatedUserController;
 use App\Containers\Authentication\UI\API\Controllers\LoginController;
 use App\Containers\Authentication\UI\API\Controllers\LogoutController;
 use App\Containers\Authentication\UI\API\Controllers\RegisterController;
 use App\Containers\Authentication\UI\API\Controllers\ResetPasswordController;
-use App\Containers\Authentication\UI\API\Controllers\ForgotPasswordController;
-use App\Containers\Authentication\UI\API\Controllers\AssignRoleToUserController;
-use App\Containers\Authentication\UI\API\Controllers\GetAuthenticatedUserController;
-use App\Containers\Authentication\UI\API\Controllers\AssignPermissionsToUserController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
     Route::post('register', RegisterController::class);
