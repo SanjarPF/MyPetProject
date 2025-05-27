@@ -45,6 +45,5 @@ MyPetApplication — исследовательский Laravel-проект, п
 
 ```bash
 cp .env.example .env
-make init-dev
-make up
-make migrate-seed
+make sail-up
+make restore
